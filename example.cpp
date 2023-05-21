@@ -1,13 +1,14 @@
-#include <boost/lambda/lambda.hpp>
 #include <iostream>
-#include <iterator>
-#include <algorithm>
+#include <boost/asio.hpp>
 
 int main()
 {
-    using namespace boost::lambda;
-    typedef std::istream_iterator<int> in;
+  boost::asio::io_context io;
 
-    std::for_each(
-        in(std::cin), in(), std::cout << (_1 * 3) << " " );
+  boost::asio::steady_timer t(io, boost::asio::chrono::seconds(5));
+  t.wait();
+
+  std::cout << "Hello, world!" << std::endl;
+
+  return 0;
 }
